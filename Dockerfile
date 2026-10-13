@@ -2,17 +2,16 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy application files
 COPY index.html .
 COPY logo/ ./logo/
 
-# Create non-root user (addresses OpenShift UID security)
+# Create non-root user with root group (GID 0) for OpenShift random UID compatibility
 RUN useradd -m -u 1001 appuser && \
-    chown -R appuser:appuser /app
+    chown -R 1001:0 /app && \
+    chmod -R g+rwx /app
 
-USER appuser
+USER 1001
 
 EXPOSE 8080
 
-# Serve static files on port 8080
 CMD ["python", "-m", "http.server", "8080", "--directory", "/app"]
