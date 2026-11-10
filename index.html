@@ -43,17 +43,19 @@ body {
 .ee-lede-hint { max-width: 620px; font-size: 15px; line-height: 1.5; color: var(--muted); margin: 0 auto 24px; font-style: italic; }
 
 .ee-tags { display: flex; flex-wrap: wrap; gap: 9px; max-width: 800px; justify-content: center; margin: 0 auto; }
-.ee-tag { font-size: 13.5px; font-weight: 600; color: var(--blue); background: #e8f0f8; border: 2.5px solid var(--maize); padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: transform .14s ease, background .14s; }
+.ee-tag { font-size: 13.5px; font-weight: 600; color: var(--blue); background: #e8f0f8; border: 2.5px solid var(--maize); padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: transform .14s ease, background .14s, outline .14s; outline: none; }
 .ee-tag:hover { transform: translateY(-2px); border-color: var(--blue2); }
+.ee-tag:focus-visible { outline: 3px solid var(--blue2); outline-offset: 2px; }
 .ee-tag.is-on { background: var(--blue); color: #fff; border-color: var(--blue); }
 .ee-clear { margin-top: 14px; background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; text-decoration: underline; display: none; width: 100%; text-align: center; }
 
 .ee-meter { margin-top: 32px; background: #fff; border: 1.5px solid var(--line); border-top: 4px solid var(--maize); border-radius: 18px; padding: 22px 24px; box-shadow: 0 12px 34px rgba(0,39,76,0.07); }
-.ee-info-btn { background: var(--maize); border: none; color: var(--blue); font-size: 11px; font-weight: 700; cursor: pointer; padding: 3px 10px; margin-left: 10px; vertical-align: middle; border-radius: 999px; letter-spacing: 0.02em; transition: opacity .15s ease; font-family: 'JetBrains Mono', monospace; }
+.ee-info-btn { background: var(--maize); border: none; color: var(--blue); font-size: 11px; font-weight: 700; cursor: pointer; padding: 8px 14px; margin-left: 10px; vertical-align: middle; border-radius: 999px; letter-spacing: 0.02em; transition: opacity .15s ease; font-family: 'JetBrains Mono', monospace; outline: none; min-height: 24px; min-width: 24px; display: inline-flex; align-items: center; justify-content: center; }
 .ee-info-btn:hover { opacity: 0.8; }
-.ee-info-modal { position: fixed; inset: 0; background: rgba(0,39,76,0.4); backdrop-filter: blur(4px); z-index: 60; display: none; place-items: center; padding: 24px; }
+.ee-info-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.ee-info-modal { position: fixed; inset: 0; background: rgba(0,39,76,0.4); backdrop-filter: blur(4px); z-index: 60; display: none; place-items: center; padding: 24px; overflow-y: auto; }
 .ee-info-modal.open { display: grid; }
-.ee-info-box { max-width: 620px; width: 100%; background: #fff; border-radius: 18px; padding: 32px 36px 30px; box-shadow: 0 30px 80px rgba(0,39,76,0.35); position: relative; animation: pop .22s cubic-bezier(.34,1.3,.5,1); }
+.ee-info-box { max-width: 620px; width: 100%; background: #fff; border-radius: 18px; padding: 32px 36px 30px; box-shadow: 0 30px 80px rgba(0,39,76,0.35); position: relative; animation: pop .22s cubic-bezier(.34,1.3,.5,1); max-height: 90vh; overflow-y: auto; }
 .ee-info-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--blue); margin: 0 0 16px; letter-spacing: -0.02em; }
 .ee-info-box p { font-size: 15px; line-height: 1.6; color: var(--ink); margin: 0 0 14px; }
 .ee-info-box ul { padding-left: 20px; margin: 12px 0 18px; }
@@ -68,7 +70,9 @@ body {
 .ee-meter-empty-bars span { height: 14px; border-radius: 999px; background: repeating-linear-gradient(90deg, #e7eef5, #e7eef5 8px, #f3f7fb 8px, #f3f7fb 16px); display: block; }
 .ee-meter-empty p { font-size: 14px; color: var(--muted); margin: 0; }
 .ee-meter-bars { display: flex; flex-direction: column; gap: 11px; }
-.ee-meter-row { display: flex; align-items: center; gap: 14px; background: none; border: none; padding: 0; cursor: pointer; text-align: left; width: 100%; }
+.ee-meter-row { display: flex; align-items: center; gap: 14px; background: none; border: none; padding: 0; cursor: pointer; text-align: left; width: 100%; outline: none; transition: opacity .15s ease; }
+.ee-meter-row:focus-visible { outline: 3px solid var(--blue2); outline-offset: 2px; border-radius: 4px; }
+.ee-meter-row:hover { opacity: 0.8; }
 .ee-meter-name { width: 168px; flex-shrink: 0; font-weight: 600; font-size: 14px; color: var(--blue); display: flex; align-items: center; gap: 6px; }
 .ee-crown { color: var(--gold); font-size: 14px; }
 .ee-meter-track { flex: 1; height: 16px; background: #eef3f8; border-radius: 999px; overflow: hidden; }
@@ -127,7 +131,8 @@ body {
 
 .ee-explore { width: 100%; margin-top: 24px; font-weight: 800; font-size: 15px; background: var(--maize); color: var(--blue); border: none; padding: 14px; border-radius: 12px; cursor: pointer; box-shadow: 0 3px 0 var(--gold); transition: transform .15s ease; }
 .ee-explore:hover { transform: translateY(-2px); }
-.ee-close { position: absolute; top: 16px; right: 18px; background: #fff; border: 1px solid var(--line); color: var(--blue); font-size: 22px; line-height: 1; cursor: pointer; z-index: 3; width: 34px; height: 34px; border-radius: 50%; }
+.ee-close { position: absolute; top: 16px; right: 18px; background: #fff; border: 1px solid var(--line); color: var(--blue); font-size: 22px; line-height: 1; cursor: pointer; z-index: 3; width: 34px; height: 34px; border-radius: 50%; outline: none; transition: outline .15s ease; }
+.ee-close:focus-visible { outline: 2px solid var(--blue2); outline-offset: 2px; }
 .ee-close.small { position: static; width: 30px; height: 30px; font-size: 19px; border: none; background: transparent; color: #fff; }
 
 .ee-fab { display: none; }
@@ -141,26 +146,19 @@ body {
   .ee-meter-name { width: 120px; font-size: 13px; }
 }
 
-/* ── Discipline tiles ── */
-.ee-disciplines { max-width: 1180px; margin: 0 auto 48px; padding: 0 24px; }
-.ee-disc-head { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: var(--blue); margin-bottom: 18px; letter-spacing: -0.02em; }
-.ee-disc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.ee-disc-tile { position: relative; background: #00274C; border-radius: 14px; padding: 24px 22px; min-height: 200px; overflow: hidden; display: flex; align-items: flex-end; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 2px 8px rgba(0,39,76,0.18); }
-.ee-disc-tile:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,39,76,0.30); }
-.ee-disc-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: #FFCB05; line-height: 1.25; position: relative; z-index: 2; transition: opacity .18s ease; }
-.ee-disc-tile:hover .ee-disc-name { opacity: 0; }
-.ee-disc-tile { cursor: pointer; }
-.ee-disc-hover { position: absolute; inset: 0; background: #001B3A; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; gap: 10px; opacity: 0; transition: opacity .18s ease; z-index: 3; }
-.ee-disc-tile:hover .ee-disc-hover { opacity: 1; }
-.ee-disc-hover-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; color: #FFCB05; line-height: 1.2; letter-spacing: -0.01em; padding-bottom: 8px; border-bottom: 2px solid #FFCB05; }
-.ee-disc-desc { font-size: 12px; color: #ccd8e6; line-height: 1.55; margin: 0; }
-.ee-disc-learn { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #FFCB05; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; transition: transform .15s ease, text-decoration-color .15s ease; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
-.ee-disc-tile:hover .ee-disc-learn:hover { transform: scale(1.07); text-decoration-color: #FFCB05; }
+/* ── Resource links ── */
+.ee-resources { max-width: 1080px; margin: 48px auto 48px; padding: 0 24px; }
+.ee-resources-head { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: var(--blue); margin-bottom: 18px; letter-spacing: -0.02em; }
+.ee-resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.ee-resource-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; background: var(--blue); color: #fff; text-decoration: none; border-radius: 14px; padding: 32px 24px; text-align: center; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 2px 8px rgba(0,39,76,0.18); outline: none; }
+.ee-resource-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,39,76,0.30); }
+.ee-resource-btn:focus-visible { outline: 3px solid var(--maize); outline-offset: 2px; }
+.ee-resource-icon { font-size: 36px; line-height: 1; }
+.ee-resource-label { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--maize); letter-spacing: -0.01em; }
+.ee-resource-sub { font-size: 13px; color: #ccd8e6; line-height: 1.5; }
 @media (max-width: 620px) {
-  .ee-disc-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .ee-disc-tile { min-height: 130px; padding: 18px 14px; }
-  .ee-disc-name { font-size: 15px; }
-  .ee-disc-desc { font-size: 11px; }
+  .ee-resources-grid { grid-template-columns: 1fr; }
+  .ee-resource-btn { padding: 24px 18px; }
 }
 </style>
 </head>
@@ -188,9 +186,20 @@ body {
       <div id="meter"></div>
     </section>
 
-    <section class="ee-disciplines">
-      <div class="ee-disc-head">Explore all 18 majors</div>
-      <div class="ee-disc-grid" id="discGrid"></div>
+    <section class="ee-resources">
+      <div class="ee-resources-head">Explore More Resources</div>
+      <div class="ee-resources-grid">
+        <a href="https://advising.engin.umich.edu/sample-schedules/" target="_blank" rel="noopener" class="ee-resource-btn">
+          <span class="ee-resource-icon">&#128197;</span>
+          <span class="ee-resource-label">Explore Course Schedules</span>
+          <span class="ee-resource-sub">View sample schedules for all engineering majors</span>
+        </a>
+        <a href="https://career.engin.umich.edu/students/michigan-engineering-student-salary-information/" target="_blank" rel="noopener" class="ee-resource-btn">
+          <span class="ee-resource-icon">&#128188;</span>
+          <span class="ee-resource-label">Explore Career &amp; Salary Information</span>
+          <span class="ee-resource-sub">Michigan Engineering student salary data and career outcomes</span>
+        </a>
+      </div>
     </section>
 
     <p class="ee-footnote">Concept prototype — not affiliated with the University of Michigan. Program and course information adapted from Michigan Engineering (engin.umich.edu); the term-by-term sequence shown is a representative sample, not an official degree audit.</p>
@@ -202,7 +211,7 @@ body {
 
   <div class="ee-info-modal" id="infoModal" onclick="closeInfo(event)">
     <div class="ee-info-box" onclick="event.stopPropagation()">
-      <button class="ee-info-close" onclick="closeInfo(event,true)">×</button>
+      <button class="ee-info-close" onclick="closeInfo(event,true)" title="Close modal" aria-label="Close information modal">×</button>
       <h3>How Your Match Is Calculated</h3>
       <p>The Engineering Major Match Meter was developed using established career-development theories and research on engineering major choice. It considers multiple factors, including the activities and problems you enjoy, your vocational interests, work values, preferred ways of learning and working, desired career impact, and areas where you currently feel confident.</p>
       <p>The matching approach is informed by:</p>
@@ -303,26 +312,6 @@ const RAW = [
 ];
 const D = RAW.map((d,i) => ({ ...d, color: ACCENTS[i % ACCENTS.length], totalCredits: 128 }));
 
-const TILE_DESCS = {
-  aero:    "Design and build aircraft, spacecraft, and propulsion systems — combining aerodynamics, structures, and physics to push the limits of flight.",
-  bme:     "Apply engineering to medicine — design devices, implants, and systems that improve how we diagnose, treat, and monitor human health.",
-  che:     "Transform raw materials into useful products using chemistry, thermodynamics, and process design to scale reactions safely and sustainably.",
-  civil:   "Design the infrastructure that connects communities — bridges, roads, water systems, and cities built to last for generations.",
-  climate: "Understand and model Earth's atmosphere — studying how weather forms, how climate shifts, and how to predict both at scale.",
-  compe:   "Bridge hardware and software — design the processors, embedded systems, and computing devices that power modern technology.",
-  cs:      "Build the algorithms and systems behind everything digital — from mobile apps and databases to artificial intelligence.",
-  datasci: "Extract meaning from large, messy datasets using statistics, machine learning, and computing to drive real decisions.",
-  ee:      "Design circuits, signals, and power systems — from the microchips in your phone to the electrical grids that power cities.",
-  engphys: "Apply advanced physics — quantum mechanics, waves, and modern theory — to real engineering problems at the frontier of science.",
-  env:     "Protect and restore the environment through clean water systems, pollution controls, and sustainable infrastructure.",
-  ioe:     "Optimize how people, machines, and resources work together — improving hospitals, supply chains, and complex systems.",
-  matsci:  "Design the materials that make every other technology possible — from batteries and semiconductors to aerospace alloys.",
-  mech:    "Design and build physical systems — engines, machines, vehicles, and robots — the broadest engineering path across nearly every industry.",
-  name:    "Design ships, submarines, and offshore structures — engineering the hydrodynamics, structures, and propulsion that keep vessels safe at sea.",
-  ners:    "Harness nuclear energy and radiation for clean power generation, medical imaging and therapy, and national security.",
-  robo:    "Build machines that sense, think, and act — fusing mechanics, electronics, and software into autonomous systems.",
-  space:   "Explore beyond Earth — design spacecraft, instruments, and missions for the space environment, from orbital systems to deep-space exploration.",
-};
 
 // Self-Efficacy skill weights per major (from Self Efficacy Program Tag Weights.xlsx)
 const SKILL_WEIGHTS = {
@@ -380,47 +369,6 @@ function scoredList(){
 }
 
 // =================== RENDER ===================
-const TILE_IMGS = {
-  aero:    "logo/aero-1-1.jpg",
-  bme:     "logo/BioMedical Engg.jpg",
-  che:     "logo/Chemical Engg.png",
-  civil:   "logo/Civil.jpg",
-  climate: "logo/Climate.jpg",
-  compe:   "logo/cse.webp",
-  cs:      "logo/CS.png",
-  datasci: "logo/Data Science.jpeg",
-  ee:      "logo/Electrical.webp",
-  ioe:     "logo/IOE.png",
-  matsci:  "logo/Material.jpg",
-  mech:    "logo/Mechanical.jpg",
-  name:    "logo/Naval.jpg",
-  ners:    "logo/Nuclear Engg & Nuc.jpg",
-  robo:    "logo/robotics.png",
-};
-
-function renderDiscTiles(){
-  const has = selected.size > 0;
-  const list = has ? scoredList() : D;
-  const topN = !has ? 0 : selected.size === 1 ? 3 : selected.size === 2 ? 2 : 1;
-  const topIds = new Set(list.slice(0, topN).map(d => d.id));
-  document.getElementById("discGrid").innerHTML = list.map(d => {
-    const img = TILE_IMGS[d.id];
-    const bg = img
-      ? `style="background-image:linear-gradient(rgba(0,27,58,0.45),rgba(0,27,58,0.45)),url('${img}');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:#001B3A;"`
-      : "";
-    const ribbon = topIds.has(d.id) ? `<span class="ee-ribbon">&#9733; Top match</span>` : "";
-    const name = img ? "" : `<div class="ee-disc-name">${esc(d.name)}</div>`;
-    return `<div class="ee-disc-tile" onclick="openDetail('${d.id}')" ${bg}>
-      ${ribbon}${name}
-      <div class="ee-disc-hover">
-        <div class="ee-disc-hover-name">${esc(d.name)}</div>
-        <p class="ee-disc-desc">${esc(TILE_DESCS[d.id] || d.tagline)}</p>
-        <span class="ee-disc-learn">Learn more &#8594;</span>
-      </div>
-    </div>`;
-  }).join("");
-}
-
 function renderStatic(){
   const markEl = document.getElementById("mark"); if(markEl) markEl.innerHTML = gear(22,"#00274C");
   document.getElementById("tool1").innerHTML = gear(150,"#00274C");
@@ -430,7 +378,7 @@ function renderStatic(){
 }
 function renderTags(){
   document.getElementById("tags").innerHTML = INTERESTS.map(([id,label]) =>
-    `<button class="ee-tag${selected.has(id)?" is-on":""}" onclick="toggleTag('${id}')">${esc(label)}</button>`).join("");
+    `<button class="ee-tag${selected.has(id)?" is-on":""}" onclick="toggleTag('${id}')" aria-pressed="${selected.has(id)?'true':'false'}" title="${label}">${esc(label)}</button>`).join("");
   document.getElementById("clearBtn").style.display = selected.size ? "block" : "none";
 }
 function renderMeter(){
@@ -438,12 +386,12 @@ function renderMeter(){
   const top = sc.filter(d=>d.score>0).slice(0,6); const max = top[0]?.score || 1;
   const topMatchCount = !has ? 0 : selected.size === 1 ? 3 : selected.size === 2 ? 2 : 1;
   const hint = !has ? "pick interests to light it up" : selected.size === 1 ? "add more tags to refine your match" : selected.size === 2 ? "add more tags to narrow to one top match" : "live — updates as you pick";
-  let html = `<div class="ee-meter"><div class="ee-meter-head"><span class="ee-kicker">${gear(14,"#00274C")} Your match meter <button class="ee-info-btn" onclick="openInfo()" title="How this works">ⓘ How scores work</button></span><span class="ee-meter-hint">${hint}</span></div>`;
+  let html = `<div class="ee-meter"><div class="ee-meter-head"><span class="ee-kicker">${gear(14,"#00274C")} Your match meter <button class="ee-info-btn" onclick="openInfoWithFocus()" title="Learn how scores are calculated">ⓘ How scores work</button></span><span class="ee-meter-hint">${hint}</span></div>`;
   if(!has){
     html += `<div class="ee-meter-empty"><div class="ee-meter-empty-bars">${[60,80,45,70,35].map(w=>`<span style="width:${w}%"></span>`).join("")}</div><p>Tap a few things you enjoy above — watch your top Michigan majors grow.</p></div>`;
   } else {
     html += `<div class="ee-meter-bars">` + top.map((d,i)=>
-      `<button class="ee-meter-row" onclick="openDetail('${d.id}')"><span class="ee-meter-name">${i<topMatchCount?'<b class="ee-crown">★</b>':''}${esc(d.name)}</span><span class="ee-meter-track"><span class="ee-meter-fill" data-target="${(d.score/max)*100}" style="width:0;background:${d.color}"></span></span><span class="ee-meter-val">${i<topMatchCount?'★':i+1}</span></button>`
+      `<button class="ee-meter-row" onclick="openDetail('${d.id}')" role="button" aria-label="${esc(d.name)}, ${d.score}% match" aria-valuenow="${d.score}" aria-valuemin="0" aria-valuemax="100"><span class="ee-meter-name">${i<topMatchCount?'<b class="ee-crown">★</b>':''}${esc(d.name)}</span><span class="ee-meter-track"><span class="ee-meter-fill" data-target="${(d.score/max)*100}" style="width:0;background:${d.color}"></span></span><span class="ee-meter-val">${d.score}%</span></button>`
     ).join("") + `</div>`;
   }
   if(has){
@@ -473,7 +421,7 @@ function openDetail(id){
   const plan = resolvePlan(d); const mix = creditMix(plan);
   const profileRows = [["math","Math intensity"],["hands","Hands-on / lab"],["code","Coding"],["design","Design & creativity"],["people","People impact"]];
   const html = `
-    <button class="ee-close" onclick="closeDetail(event,true)">×</button>
+    <button class="ee-close" onclick="closeDetail(event,true)" title="Close detail panel" aria-label="Close detail panel for ${esc(d.name)}">×</button>
     <div class="ee-detail-band"></div>
     <div class="ee-detail-head">
       <div>
@@ -507,11 +455,75 @@ function openInfo(){ document.getElementById("infoModal").classList.add("open");
 function closeInfo(e, force){ if(force || e.target.id==="infoModal") document.getElementById("infoModal").classList.remove("open"); }
 
 // =================== ACTIONS ===================
-function toggleTag(id){ selected.has(id)?selected.delete(id):selected.add(id); renderTags(); renderMeter(); renderDiscTiles(); }
-function clearSel(){ selected=new Set(); renderTags(); renderMeter(); renderDiscTiles(); }
+function toggleTag(id){ selected.has(id)?selected.delete(id):selected.add(id); renderTags(); renderMeter(); }
+function clearSel(){ selected=new Set(); renderTags(); renderMeter(); }
+
+// =================== KEYBOARD SUPPORT ===================
+let lastFocusedElement = null;
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    const infoModal = document.getElementById('infoModal');
+    const detailOverlay = document.getElementById('overlay');
+    if(infoModal.classList.contains('open')) { closeInfo(e, true); if(lastFocusedElement) lastFocusedElement.focus(); }
+    if(detailOverlay.classList.contains('open')) { closeDetail(e, true); if(lastFocusedElement) lastFocusedElement.focus(); }
+  }
+});
+
+function trapFocusInModal(modal) {
+  const focusableElements = modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  modal.addEventListener('keydown', (e) => {
+    if(e.key === 'Tab') {
+      if(e.shiftKey) {
+        if(document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if(document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  });
+}
+
+function openInfoWithFocus() {
+  lastFocusedElement = document.activeElement;
+  openInfo();
+  document.getElementById('infoModal').querySelector('button').focus();
+  trapFocusInModal(document.getElementById('infoModal').querySelector('.ee-info-box'));
+}
+
+function openDetailWithFocus(id) {
+  lastFocusedElement = document.activeElement;
+  openDetail({target: {id: 'overlay'}});
+  const detail = document.getElementById('detail');
+  detail.innerHTML = detail.innerHTML; // refresh
+  openDetail({target: null}, false);
+  openDetail('', id);
+  const closeBtn = detail.querySelector('.ee-close');
+  if(closeBtn) closeBtn.focus();
+  trapFocusInModal(detail);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.ee-meter-row').forEach(btn => {
+      btn.setAttribute('tabindex', '0');
+    });
+    document.querySelectorAll('.ee-tag').forEach(tag => {
+      tag.setAttribute('tabindex', '0');
+    });
+  }, 100);
+});
 
 // =================== INIT ===================
-renderStatic(); renderDiscTiles(); renderTags(); renderMeter();
+renderStatic(); renderTags(); renderMeter();
 </script>
 </body>
 </html>
