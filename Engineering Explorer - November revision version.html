@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Explorer · Alternative Profile · DRAFT v2 · Michigan Engineering</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --blue: #00274C; --blue-deep: #001A33; --blue2: #2F65A7; --sky: #DCEBFA; --sky2: #EEF5FC;
+  --maize: #FFCB05; --maize-soft: #FFF1B8; --maize-pale: #FFF9DF; --gold: #B38600;
+  --paper: #FBF8F1; --paper2: #F3EEE2; --ink: #0B1F38; --ink2: #3B4F66; --muted: #6E7E91;
+  --ok: #1F7A4D; --ok-bg: #E4F3EA; --warn-bg: #FFF4CC; --warn-line: #D9A800;
+  --line: rgba(0,39,76,0.14);
+  --r: 14px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { margin: 0; font-family: 'Hanken Grotesk', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.5; }
+a { color: var(--blue2); }
+button { font-family: inherit; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---- draft banner + header ---- */
+.draft { position: sticky; top: 0; z-index: 40; background: var(--maize); color: var(--blue); font-weight: 700; font-size: 13px; text-align: center; padding: 6px 12px; }
+.draft span { font-weight: 500; }
+.top { position: sticky; top: 30px; z-index: 39; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 10px 28px; border-bottom: 3px solid var(--maize); }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand b { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .01em; }
+.brand small { display: block; font-size: 11px; color: var(--maize); font-weight: 600; }
+.top .name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; }
+.advisor { color: var(--maize); border: 1.5px solid var(--maize); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 13px; text-decoration: none; }
+.advisor:hover, .advisor:focus-visible { background: var(--maize); color: var(--blue); outline: none; }
+
+/* ---- hero band ---- */
+.hero { background: var(--blue); color: #fff; padding: 56px 28px 64px; position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 48px; background: var(--paper); clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+.hero-in { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5.6vw, 66px); line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 18px; color: var(--maize); max-width: 16ch; }
+.hero p.lede { font-size: 19px; line-height: 1.5; max-width: 54ch; margin: 0 0 22px; color: #E6EEF7; }
+.hero p.lede b { color: #fff; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; font-size: 15px; color: #E6EEF7; }
+.steps .n { width: 30px; height: 30px; border-radius: 50%; background: var(--maize); color: var(--blue); font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; display: grid; place-items: center; font-size: 15px; }
+.steps b { color: #fff; }
+.hero-art { justify-self: end; width: 100%; max-width: 360px; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+
+/* ---- page body with schematic margins ---- */
+.page { position: relative; }
+.page::before, .page::after { content: ""; position: absolute; top: 0; bottom: 0; width: 180px; pointer-events: none; opacity: .55;
+  background-repeat: repeat-y; background-size: 180px 380px; }
+.page::before { left: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='380' viewBox='0 0 180 380' fill='none' stroke='%2300274C' stroke-opacity='.10' stroke-width='1.2'><circle cx='40' cy='70' r='34'/><circle cx='40' cy='70' r='22'/><path d='M40 24v12M40 104v12M-6 70h12M74 70h12'/><path d='M10 230c20-30 40 30 60 0s40 30 60 0'/><rect x='18' y='290' width='60' height='40' rx='4'/><path d='M48 290v-16M30 330v16M66 330v16'/></svg>"); }
+.page::after { right: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='380' viewBox='0 0 180 380' fill='none' stroke='%2300274C' stroke-opacity='.10' stroke-width='1.2'><ellipse cx='120' cy='90' rx='50' ry='18' transform='rotate(-25 120 90)'/><circle cx='120' cy='90' r='6'/><path d='M90 200l30-50 30 50z'/><path d='M80 300h80M80 318h60M80 336h70'/></svg>"); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 36px 28px 80px; position: relative; z-index: 1; }
+
+/* ---- the three columns ---- */
+.ask { text-align: center; max-width: 64ch; margin: 0 auto 26px; }
+.ask h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--blue); margin: 0 0 8px; }
+.ask p { margin: 0; color: var(--ink2); font-size: 16px; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+.col { border-radius: 18px; padding: 18px 16px 14px; border: 1.5px solid transparent; position: relative; }
+.col.c-subjects { background: var(--sky2); border-color: #BFD6EE; }
+.col.c-activities { background: var(--maize-pale); border-color: #F0D98A; }
+.col.c-applications { background: #F3F0F7; border-color: #D4CCE3; }
+.col-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.col-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: #fff; box-shadow: inset 0 0 0 1.5px var(--line); font-size: 24px; flex-shrink: 0; }
+.col h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.015em; color: var(--blue); margin: 0; line-height: 1.1; }
+.col .why { font-size: 13.5px; color: var(--ink2); margin: 6px 0 12px; line-height: 1.45; }
+.prog { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; min-height: 20px; }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 22px; height: 8px; border-radius: 999px; background: rgba(0,39,76,.12); display: block; transition: background .2s; }
+.dots i.on { background: var(--blue); }
+.prog span { font-size: 13px; font-weight: 700; color: var(--blue); }
+.prog span.done { color: var(--ok); }
+.opts { display: grid; gap: 7px; }
+.opt { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: #fff; border: 1.5px solid var(--line); color: var(--ink); border-radius: 12px; padding: 9px 12px 9px 10px; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: transform .12s, background .12s, border-color .12s; }
+.opt .pic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font-size: 18px; background: var(--paper2); flex-shrink: 0; }
+.opt:hover { transform: translateX(3px); border-color: var(--blue2); }
+.opt:focus-visible { outline: 3px solid var(--blue2); outline-offset: 2px; }
+.opt[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.opt[aria-pressed="true"] .pic { background: rgba(255,255,255,.14); }
+.opt .chk { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: 12px; color: transparent; flex-shrink: 0; }
+.opt[aria-pressed="true"] .chk { background: var(--maize); border-color: var(--maize); color: var(--blue); font-weight: 800; }
+.col-foot { margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+
+/* ---- sticky progress bar ---- */
+.bar.hidden { opacity: 0; pointer-events: none; transform: translateY(12px); }
+.bar { transition: opacity .25s, transform .25s; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; display: flex; justify-content: center; padding: 0 12px 14px; pointer-events: none; }
+.bar-in { pointer-events: auto; display: flex; align-items: center; gap: 14px; background: var(--blue-deep); color: #fff; border-radius: 999px; padding: 10px 12px 10px 18px; box-shadow: 0 14px 40px rgba(0,26,51,.35); max-width: 100%; flex-wrap: wrap; justify-content: center; }
+.bar-seg { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #D7E3F0; }
+.bar-seg .mini { display: flex; gap: 3px; }
+.bar-seg .mini i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.22); display: block; }
+.bar-seg .mini i.on { background: var(--maize); }
+.bar-cta { background: var(--maize); color: var(--blue); border: none; border-radius: 999px; padding: 9px 16px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.bar-cta[disabled] { background: rgba(255,255,255,.14); color: #B9C7D6; cursor: default; }
+.bar-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.bar-reset { background: transparent; color: #D7E3F0; border: 1.5px solid rgba(255,255,255,.35); border-radius: 999px; padding: 8px 14px; font-weight: 700; font-size: 13px; cursor: pointer; }
+.bar-reset:hover, .bar-reset:focus-visible { border-color: var(--maize); color: var(--maize); outline: none; }
+
+/* ---- big reset button ---- */
+.reset-row { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 26px auto 0; }
+.reset-btn { display: inline-flex; align-items: center; gap: 12px; background: #fff; color: var(--blue); border: 2.5px solid var(--blue); border-radius: 999px; padding: 16px 34px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; cursor: pointer; box-shadow: 0 10px 30px rgba(0,39,76,.12); transition: transform .12s, background .12s, color .12s; }
+.reset-btn:hover { background: var(--blue); color: #fff; transform: translateY(-1px); }
+.reset-btn:focus-visible { outline: 3px solid var(--maize); outline-offset: 3px; }
+.reset-btn[disabled] { opacity: .45; cursor: default; box-shadow: none; transform: none; }
+.reset-btn[disabled]:hover { background: #fff; color: var(--blue); }
+.reset-btn .ico { font-size: 22px; line-height: 1; }
+.reset-note { font-size: 13px; color: var(--muted); margin: 0; }
+
+/* ---- meter ---- */
+.meter { margin-top: 40px; background: #fff; border-radius: 20px; border: 1.5px solid var(--line); padding: 24px 26px; box-shadow: 0 18px 50px rgba(0,39,76,.08); scroll-margin-top: 110px; }
+.meter-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.meter-head h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: var(--blue); margin: 0; }
+.ee-info-btn { background: var(--maize); border: none; color: var(--blue); font-size: 13px; font-weight: 700; cursor: pointer; padding: 8px 14px; border-radius: 999px; }
+.ee-info-btn:hover { opacity: .85; } .ee-info-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.locked { margin-top: 10px; border-radius: 16px; padding: 34px 24px; background: var(--paper); border: 2px dashed var(--line); text-align: center; }
+.locked .big { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.02em; color: var(--blue); margin: 0 0 10px; }
+.locked .big em { font-style: normal; background: var(--maize); border-radius: 8px; padding: 0 8px; }
+.locked-cats { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; }
+.locked-cat { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid var(--line); border-radius: 999px; padding: 6px 14px 6px 10px; font-size: 14px; font-weight: 700; color: var(--blue); }
+.locked-cat .dots i { width: 16px; }
+.locked-cat.ok { background: var(--ok-bg); border-color: #9BD1B2; color: var(--ok); } .locked-cat.ok .dots i.on { background: var(--ok); }
+.ee-abet-note { margin-top: 12px; padding: 10px 14px; background: var(--sky2); border-radius: 10px; font-size: 13px; color: var(--ink2); line-height: 1.55; }
+.ee-abet-note b { color: var(--blue); }
+.locked-note { color: var(--ink2); font-size: 15px; margin: 0; max-width: 56ch; margin-inline: auto; }
+.ee-nudge { background: var(--warn-bg); border-left: 4px solid var(--warn-line); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; color: var(--ink); margin: 0 0 12px; }
+.ee-meter-bars { display: flex; flex-direction: column; gap: 10px; }
+.ee-meter-row { display: grid; grid-template-columns: 26px 34px 200px 1fr 54px; align-items: center; gap: 10px; background: none; border: none; padding: 6px 4px; border-radius: 10px; cursor: pointer; text-align: left; width: 100%; }
+.ee-meter-row:hover { background: var(--sky2); } .ee-meter-row:focus-visible { outline: 3px solid var(--blue2); }
+.ee-rank { width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: #fff; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 12px; display: grid; place-items: center; }
+.ee-rank.r1 { background: var(--maize); color: var(--blue); }
+.m-ico { width: 32px; height: 32px; border-radius: 9px; background: var(--paper2); display: grid; place-items: center; font-size: 18px; }
+.ee-meter-name { font-weight: 700; font-size: 15px; color: var(--blue); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ee-meter-track { height: 16px; background: #EEF2F6; border-radius: 999px; overflow: hidden; }
+.ee-meter-fill { display: block; height: 100%; border-radius: 999px; transition: width .7s cubic-bezier(.34,1.4,.5,1); }
+.ee-meter-val { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; text-align: right; color: var(--blue); }
+.ee-overlap { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.65; color: var(--ink2); }
+.ee-overlap b { color: var(--blue); }
+.ee-overlap .chip { display: inline-block; background: var(--sky2); border-radius: 999px; padding: 1px 9px; font-size: 12.5px; font-weight: 600; color: var(--blue); margin: 1px 2px; }
+.ee-overlap .chip.distinct { background: var(--maize-soft); }
+.ee-meter-science { font-size: 13px; color: var(--muted); line-height: 1.55; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+
+/* ---- shared small bits used by the modals ---- */
+.ee-tiny { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; font-size: 12.5px; color: var(--blue2); }
+.ee-ph { display: inline-flex; align-items: center; gap: 6px; background: var(--warn-bg); border: 1px dashed var(--warn-line); color: #6B5300; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+.ee-verify { color: #9A7400; font-size: 11px; font-weight: 700; cursor: help; }
+.ee-code { color: var(--muted); font-size: 12px; }
+
+/* ---- modals ---- */
+.ee-overlay, .ee-info-modal { position: fixed; inset: 0; background: rgba(0,26,51,.5); backdrop-filter: blur(4px); z-index: 60; display: none; place-items: start center; padding: 24px; overflow-y: auto; }
+.ee-overlay.open, .ee-info-modal.open { display: grid; }
+.ee-detail, .ee-info-box { position: relative; width: 100%; background: #fff; border-radius: 20px; margin: 24px 0; box-shadow: 0 30px 80px rgba(0,26,51,.4); }
+.ee-detail { max-width: 900px; padding: 0 36px 36px; overflow: hidden; --c: #00274C; }
+.ee-info-box { max-width: 760px; padding: 32px 36px 30px; }
+.ee-detail-band { height: 10px; background: var(--c); margin: 0 -36px 26px; }
+.ee-detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.ee-detail h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 27px; margin: 0 0 10px; letter-spacing: -0.02em; color: var(--blue); max-width: 26ch; }
+.ee-detail-tagline { color: var(--ink2); font-size: 15px; line-height: 1.6; margin: 0 0 12px; max-width: 60ch; }
+.ee-distinct { font-size: 13.5px; color: var(--muted); line-height: 1.5; margin: 0 0 6px; max-width: 60ch; }
+.ee-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.ee-badge { font-size: 11.5px; font-weight: 700; border-radius: 999px; padding: 4px 10px; border: 1px solid var(--line); color: var(--ink2); background: var(--paper); }
+.ee-match-rationale { background: var(--sky2); border-left: 4px solid var(--blue); border-radius: 10px; padding: 14px 16px; margin: 18px 0; font-size: 14px; line-height: 1.6; }
+.ee-contrib { display: grid; gap: 6px; margin: 10px 0 4px; }
+.ee-contrib-row { display: grid; grid-template-columns: 220px 1fr 44px; align-items: center; gap: 10px; font-size: 12.5px; }
+.ee-contrib-row .lbl { color: var(--ink2); } .ee-contrib-row .lbl.miss { color: var(--muted); text-decoration: line-through; }
+.ee-contrib-track { height: 9px; background: #E7EEF5; border-radius: 999px; overflow: hidden; }
+.ee-contrib-fill { height: 100%; background: var(--blue); border-radius: 999px; }
+.ee-contrib-row .val { text-align: right; font-weight: 700; color: var(--blue); font-size: 12px; }
+.ee-match-disclaimer { font-size: 11.5px; color: var(--muted); margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font-style: italic; }
+.ee-links, .ee-viz { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+.ee-link-box, .ee-viz-box { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; }
+.ee-link-box .ee-tiny, .ee-viz-box .ee-tiny { display: block; margin-bottom: 6px; }
+.ee-link-box a { color: var(--blue2); font-weight: 600; text-decoration: none; } .ee-link-box a:hover { text-decoration: underline; }
+.ee-link-box ul { margin: 0; padding-left: 16px; } .ee-link-box li { margin: 4px 0; }
+.ee-link-box.um { background: var(--sky2); border-color: #BFD6EE; }
+.ee-link-box.ext { background: var(--maize-pale); border-color: #F0D98A; }
+.ee-link-box .hint { display: block; font-size: 12px; color: var(--muted); margin: -2px 0 8px; }
+.ee-res-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.015em; color: var(--blue); margin: 22px 0 -6px; display: flex; align-items: center; gap: 8px; }
+.ee-res-title .tag { font-family: 'Hanken Grotesk', sans-serif; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; }
+.ee-res-title .tag.um { background: var(--blue); color: #fff; }
+.ee-res-title .tag.ext { background: var(--maize); color: var(--blue); }
+.ee-bars { display: flex; flex-direction: column; gap: 11px; margin-top: 16px; }
+.ee-bar-row { display: flex; align-items: center; gap: 12px; }
+.ee-bar-label { font-size: 12.5px; color: var(--ink2); width: 116px; flex-shrink: 0; }
+.ee-bar-track { flex: 1; height: 10px; background: #E7EEF5; border-radius: 999px; overflow: hidden; }
+.ee-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue), var(--maize)); transition: width .8s cubic-bezier(.34,1.3,.5,1); }
+.ee-bar-val { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 13px; color: var(--ink2); width: 20px; text-align: right; }
+.ee-close { position: absolute; top: 16px; right: 18px; background: #fff; border: 1px solid var(--line); color: var(--blue); font-size: 22px; line-height: 1; cursor: pointer; z-index: 3; width: 34px; height: 34px; border-radius: 50%; }
+.ee-close:focus-visible { outline: 2px solid var(--blue2); outline-offset: 2px; }
+.ee-info-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--blue); margin: 0 0 14px; letter-spacing: -0.02em; }
+.ee-info-box h4 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; color: var(--blue); margin: 20px 0 8px; }
+.ee-info-box p, .ee-info-box li { font-size: 14px; line-height: 1.6; }
+.ee-info-box p { margin: 0 0 10px; } .ee-info-box ul, .ee-info-box ol { padding-left: 20px; margin: 8px 0 12px; } .ee-info-box li { margin-bottom: 6px; }
+.ee-formula { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13px; color: var(--blue); margin: 10px 0; overflow-x: auto; }
+.ee-info-box details { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+.ee-info-box summary { cursor: pointer; font-weight: 700; color: var(--blue); font-size: 13.5px; }
+.ee-wtable { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-top: 10px; }
+.ee-wtable th, .ee-wtable td { border: 1px solid var(--line); padding: 3px 4px; text-align: center; }
+.ee-wtable th { background: var(--paper); color: var(--blue); font-weight: 700; position: sticky; top: 0; }
+.ee-wtable td:first-child, .ee-wtable th:first-child { text-align: left; white-space: nowrap; }
+.ee-wtable td.w3 { background: #00274C; color: #fff; } .ee-wtable td.w2 { background: #2F65A7; color: #fff; } .ee-wtable td.w1 { background: #CFE0F2; }
+.ee-wrap { max-height: 360px; overflow: auto; }
+.ee-refs { font-size: 12.5px; line-height: 1.55; color: var(--ink2); padding-left: 18px; } .ee-refs li { margin-bottom: 7px; }
+.ee-info-source { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+/* ---- resources + footer ---- */
+.more { max-width: 1120px; margin: 44px auto 0; padding: 0 28px; }
+.more h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: var(--blue); letter-spacing: -0.02em; margin: 0 0 14px; }
+.more-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.more a { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 16px; text-decoration: none; color: var(--ink); }
+.more a:hover { border-color: var(--blue2); } .more a:focus-visible { outline: 3px solid var(--blue2); }
+.more .pic { font-size: 26px; width: 44px; height: 44px; border-radius: 12px; background: var(--maize-pale); display: grid; place-items: center; flex-shrink: 0; }
+.more b { display: block; color: var(--blue); font-size: 15.5px; margin-bottom: 2px; }
+.more span { font-size: 13px; color: var(--ink2); line-height: 1.45; }
+.foot { max-width: 1120px; margin: 34px auto 0; padding: 18px 28px 110px; font-size: 12px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--line); }
+
+@media (max-width: 900px) {
+  .hero-in { grid-template-columns: 1fr; } .hero-art { justify-self: start; max-width: 240px; order: -1; }
+  .cols { grid-template-columns: 1fr; } .more-grid { grid-template-columns: 1fr; }
+  .reset-btn { font-size: 17px; padding: 14px 26px; }
+  .page::before, .page::after { display: none; }
+  .ee-meter-row { grid-template-columns: 24px 30px 1fr 50px; } .ee-meter-row .ee-meter-track { grid-column: 1 / 4; grid-row: 2; } .ee-meter-row .ee-meter-val { grid-column: 4; grid-row: 2; font-size: 14px; }
+  .ee-links, .ee-viz { grid-template-columns: 1fr; } .ee-detail-head { flex-direction: column; }
+  .ee-detail { padding: 0 22px 24px; } .ee-detail-band { margin: 0 -22px 22px; }
+  .ee-contrib-row { grid-template-columns: 130px 1fr 40px; }
+  .top .name { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="draft">Draft prototype · alternative profile v2 <span>— for feedback only. Not an official advising tool; program, link and career details are still being verified.</span></div>
+<header class="top">
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="7" fill="#FFCB05"/><text x="17" y="24" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="21" fill="#00274C">M</text></svg>
+    <div><b>Michigan Engineering</b><small>Undergraduate Education</small></div>
+  </div>
+  <div class="name">Engineering Explorer</div>
+  <a class="advisor" href="https://advising.engin.umich.edu/" target="_blank" rel="noopener">Talk with an advisor</a>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>What do you love to learn, do, and solve?</h1>
+      <p class="lede">Every Michigan engineer starts with the same first year and declares a major by the third term. <b>This is a place to explore, not to decide.</b> Tell us what you enjoy and watch which of the 18 majors share it.</p>
+      <ol class="steps">
+        <li><span class="n">1</span><div><b>Select at least three options from each category</b> below — <b>Subjects I enjoy</b>, <b>Things I like doing</b>, and <b>Problems I want to work on</b>. Subjects show what you like to learn, doing shows how you like to work, and problems show where you want your work to land. Three from each keeps one side of you from drowning out the others.</div></li>
+        <li><span class="n">2</span><div><b>Your matches stay hidden until every category has three.</b> Once they do, matches appear and update instantly as you add or remove options. Use <b>Reset choices</b> to start over.</div></li>
+        <li><span class="n">3</span><div><b>Tap a match</b> to see which of your picks drove it, the careers it leads to, and links to Michigan Engineering resources and outside career-exploration tests. Then bring the list to an advisor.</div></li>
+      </ol>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 360 300" fill="none">
+        <circle cx="120" cy="120" r="92" stroke="#2F65A7" stroke-width="2" stroke-dasharray="6 8"/>
+        <circle cx="120" cy="120" r="56" stroke="#FFCB05" stroke-width="10"/>
+        <circle cx="120" cy="120" r="30" fill="#FFCB05"/>
+        <g stroke="#FFCB05" stroke-width="10" stroke-linecap="round"><path d="M120 46v-20M120 194v20M46 120H26M194 120h20M68 68l-14-14M172 172l14 14M172 68l14-14M68 172l-14 14"/></g>
+        <circle cx="120" cy="120" r="12" fill="#00274C"/>
+        <path d="M240 250 L300 70 L330 250 Z" fill="#DCEBFA" opacity=".95"/>
+        <path d="M300 70 L330 250 L300 232 Z" fill="#2F65A7"/>
+        <circle cx="300" cy="150" r="12" fill="#00274C"/>
+        <path d="M240 250 L220 290 L270 262 Z" fill="#FFCB05"/><path d="M330 250 L350 290 L300 262 Z" fill="#FFCB05"/>
+        <path d="M30 262c30-28 60 28 90 0s60 28 90 0" stroke="#FFCB05" stroke-width="3" stroke-linecap="round"/>
+        <g stroke="#DCEBFA" stroke-width="2"><path d="M232 30h40v22h30"/><circle cx="232" cy="30" r="4" fill="#DCEBFA"/><circle cx="302" cy="52" r="4" fill="#DCEBFA"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="page">
+  <main class="wrap">
+    <div class="ask">
+      <h2>Select at least three options from each category</h2>
+      <p>Three or more from <b>Subjects I enjoy</b>, three or more from <b>Things I like doing</b>, and three or more from <b>Problems I want to work on</b>. There are no wrong answers and nothing is scored against you. Pick what you would choose on a free afternoon, not what you think an engineer should like.</p>
+    </div>
+    <div class="cols" id="cols"></div>
+    <div class="reset-row" id="resetRow"></div>
+    <div id="meter"></div>
+  </main>
+</div>
+
+<section class="more">
+  <h2>Keep exploring</h2>
+  <div class="more-grid">
+    <a href="https://advising.engin.umich.edu/sample-schedules/" target="_blank" rel="noopener"><span class="pic">📅</span><div><b>Official sample schedules</b><span>Verified four-year plans for every Michigan Engineering major.</span></div></a>
+    <a href="https://career.engin.umich.edu/students/michigan-engineering-student-salary-information/" target="_blank" rel="noopener"><span class="pic">💼</span><div><b>Career and salary outcomes</b><span>Where recent Michigan Engineering graduates went and what they earn.</span></div></a>
+    <a href="https://career.engin.umich.edu/" target="_blank" rel="noopener"><span class="pic">🎯</span><div><b>Engineering Career Resource Center</b><span>Michigan Engineering's career office: advising, internships, and employer connections. ⚠</span></div></a>
+    <a href="https://www.mynextmove.org/explore/ip" target="_blank" rel="noopener"><span class="pic">🧭</span><div><b>Free interest profiler</b><span>O*NET Interest Profiler (U.S. Dept. of Labor): ten minutes, gives you a Holland code to compare with these results.</span></div></a>
+  </div>
+</section>
+<p class="foot">Draft prototype (alternative profile v2, November 2026) developed for Michigan Engineering undergraduate education. Not an official advising tool and not a measure of ability or admission. Program information adapted from Michigan Engineering (engin.umich.edu) and being verified; course requirements are linked to official pages rather than reproduced here. Interest weights are a draft pending faculty and advisor review. Career data references O*NET OnLine (U.S. Department of Labor) and CareerExplorer. External career tests are listed for exploration only; Michigan Engineering does not endorse any particular test. Accreditation (ABET) status is not shown here — contact a Michigan Engineering advisor or the program's official website for current information. Items marked ⚠ have not yet been verified.</p>
+
+<div class="bar" id="bar"></div>
+
+<div class="ee-overlay" id="overlay" onclick="closeDetail(event)"><div class="ee-detail" id="detail" onclick="event.stopPropagation()" role="dialog" aria-modal="true"></div></div>
+<div class="ee-info-modal" id="infoModal" onclick="closeInfo(event)"><div class="ee-info-box" id="infoBox" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="infoTitle"></div></div>
+
+<script>
+// =====================================================================
+//  ENGINEERING EXPLORER — ALTERNATIVE PROFILE (DRAFT v2)
+//  Changes from v2 (Nov 2026 feedback round): categorized interest set,
+//  single weight table per major, non-diluting score, minimum-3 rule, score
+//  breakdown, methodology panel, career + major-website links.
+//  v3.1: course lists removed from panels (linked instead); 38 tags.
+//  Alt-profile v2 (23 Nov 2026): ABET label/filter removed (advisor note
+//  instead); rule is 3 picks in EACH category and matches are hidden until
+//  then; big Reset button; detail panel lists U-M resources + external tests.
+//  Everything marked VERIFY is unconfirmed.
+// =====================================================================
+
+// ---------- INTEREST TAGS (3 categories) ----------
+const CATEGORIES = [
+  { id:"subjects",     label:"Subjects you enjoy",          hint:"what you like to study" },
+  { id:"activities",   label:"Things you like doing",       hint:"how you like to work" },
+  { id:"applications", label:"Problems you want to work on",hint:"where you want your work to land" },
+];
+const TAGS = {
+  math:{label:"Math",cat:"subjects"},
+  physics:{label:"Physics",cat:"subjects"},
+  chem:{label:"Chemistry",cat:"subjects"},
+  bio:{label:"Biology & medicine",cat:"subjects"},
+  earthsci:{label:"Earth, weather & climate science",cat:"subjects"},
+  stats:{label:"Statistics & data",cat:"subjects"},
+  econ:{label:"Economics & business",cat:"subjects"},
+  elecmag:{label:"Electricity, circuits & magnetism",cat:"subjects"},
+  mechanics:{label:"Mechanics, forces & motion",cat:"subjects"},
+  csalgo:{label:"Computer science & algorithms",cat:"subjects"},
+  astro:{label:"Astronomy & space science",cat:"subjects"},
+  build:{label:"Building physical things",cat:"activities"},
+  code:{label:"Coding & software",cat:"activities"},
+  hands:{label:"Hands-on / lab work",cat:"activities"},
+  design:{label:"Designing & creativity",cat:"activities"},
+  puzzle:{label:"Solving puzzles & logic",cat:"activities"},
+  optimize:{label:"Organizing & optimizing systems",cat:"activities"},
+  lead:{label:"Leading teams & working with people",cat:"activities"},
+  howworks:{label:"Taking things apart / how things work",cat:"activities"},
+  research:{label:"Experimenting & research",cat:"activities"},
+  analyze:{label:"Analyzing data & finding patterns",cat:"activities"},
+  field:{label:"Working outdoors / in the field",cat:"activities"},
+  simulate:{label:"Modeling & simulating on a computer",cat:"activities"},
+  wiring:{label:"Wiring circuits & electronics",cat:"activities"},
+  communicate:{label:"Communicating & explaining ideas",cat:"activities"},
+  space:{label:"Space & flight",cat:"applications"},
+  water:{label:"Oceans, ships & water",cat:"applications"},
+  health:{label:"Health & medical devices",cat:"applications"},
+  earth:{label:"Environment & sustainability",cat:"applications"},
+  energy:{label:"Energy & power",cat:"applications"},
+  robots:{label:"Robots & autonomous machines",cat:"applications"},
+  ai:{label:"AI & machine learning",cat:"applications"},
+  vehicles:{label:"Cars, planes & transportation",cat:"applications"},
+  infra:{label:"Cities, buildings & infrastructure",cat:"applications"},
+  biz:{label:"Business, entrepreneurship & startups",cat:"applications"},
+  materials:{label:"Materials & manufacturing",cat:"applications"},
+  electronics:{label:"Electronics & devices",cat:"applications"},
+  people:{label:"Helping people & communities",cat:"applications"},
+};
+
+// ---------- DRAFT WEIGHTS (0–3 relevance; single source of truth per major) ----------
+const WEIGHTS = {
+  aero:    {math:2,physics:3,build:2,design:2,puzzle:1,howworks:1,space:3,vehicles:2,code:1,research:1,hands:1,mechanics:3,astro:2,simulate:2},
+  bme:     {bio:3,health:3,people:2,design:2,hands:2,chem:1,math:1,build:1,research:2,electronics:1,howworks:1,elecmag:1,mechanics:1,analyze:1,wiring:1,communicate:1},
+  che:     {chem:3,math:2,physics:1,bio:1,hands:2,earth:1,energy:2,materials:2,health:1,optimize:1,research:1,puzzle:1,simulate:1},
+  civil:   {build:3,infra:3,people:2,earth:2,physics:1,math:1,design:2,water:1,hands:1,lead:1,mechanics:3,field:2,communicate:1},
+  climate: {earthsci:3,physics:2,math:2,code:1,stats:1,earth:2,research:2,puzzle:1,howworks:1,space:1,astro:1,analyze:2,field:2,simulate:3},
+  compe:   {code:3,electronics:3,build:2,puzzle:2,math:2,howworks:2,robots:1,ai:1,hands:1,design:1,elecmag:2,csalgo:2,wiring:3},
+  cs:      {code:3,puzzle:3,math:2,ai:2,design:1,howworks:1,stats:1,research:1,biz:1,csalgo:3,analyze:1,simulate:1,communicate:1},
+  datasci: {stats:3,code:2,math:2,ai:3,puzzle:2,optimize:1,biz:1,research:1,health:1,csalgo:2,analyze:3,simulate:1,communicate:1},
+  ee:      {electronics:3,physics:2,math:2,build:2,puzzle:1,howworks:2,energy:2,code:1,hands:2,robots:1,design:1,elecmag:3,csalgo:1,simulate:1,wiring:3},
+  engphys: {physics:3,math:3,puzzle:2,research:3,howworks:1,space:1,electronics:1,code:1,materials:1,elecmag:2,astro:1,simulate:2},
+  env:     {earth:3,people:2,chem:2,bio:1,water:2,earthsci:1,hands:1,infra:1,energy:1,research:1,math:1,analyze:1,field:3,communicate:1},
+  ioe:     {optimize:3,people:2,biz:3,lead:2,math:2,stats:2,puzzle:1,health:1,econ:2,code:1,analyze:2,communicate:2},
+  matsci:  {materials:3,chem:2,physics:2,hands:2,howworks:1,design:1,energy:1,research:2,math:1,build:1,electronics:1,mechanics:2},
+  mech:    {build:3,physics:2,hands:2,design:3,howworks:2,math:1,vehicles:2,robots:1,energy:1,materials:1,puzzle:1,mechanics:3,simulate:1},
+  name:    {water:3,build:2,physics:2,design:2,vehicles:2,math:1,howworks:1,hands:1,infra:1,earth:1,mechanics:3,field:2},
+  ners:    {physics:3,math:2,energy:3,health:1,research:2,chem:1,hands:1,howworks:1,earth:1,puzzle:1,elecmag:1,analyze:1,simulate:2},
+  robo:    {robots:3,build:2,code:2,electronics:2,ai:2,hands:2,howworks:1,design:1,physics:1,math:1,puzzle:1,elecmag:1,mechanics:1,csalgo:1,wiring:2},
+  space:   {space:3,physics:3,math:2,electronics:1,build:1,research:2,code:1,earthsci:1,howworks:1,design:1,elecmag:1,astro:3,simulate:2,wiring:1},
+};
+
+// ---------- CAREERS: O*NET occupations + CareerExplorer pages (VERIFY codes/URLs) ----------
+const ONET = soc => `https://www.onetonline.org/link/summary/${soc}`;
+const CX   = slug => `https://www.careerexplorer.com/careers/${slug}/`;
+const CAREERS = {
+  aero:    { onet:[["Aerospace Engineers","17-2011.00","IRC"],["Aerospace Eng. & Operations Technologists","17-3021.00","RIC"]], cx:["aerospace-engineer"] },
+  bme:     { onet:[["Bioengineers & Biomedical Engineers","17-2031.00","IRC"],["Medical Scientists","19-1042.00","IRA"]], cx:["biomedical-engineer"] },
+  che:     { onet:[["Chemical Engineers","17-2041.00","IRC"],["Materials Scientists","19-2032.00","IR"]], cx:["chemical-engineer"] },
+  civil:   { onet:[["Civil Engineers","17-2051.00","RIC"],["Transportation Engineers","17-2051.01","RIC"],["Construction Managers","11-9021.00","ERC"]], cx:["civil-engineer"] },
+  climate: { onet:[["Atmospheric & Space Scientists","19-2021.00","IR"],["Hydrologists","19-2043.00","IR"]], cx:["meteorologist"] },
+  compe:   { onet:[["Computer Hardware Engineers","17-2061.00","IRC"],["Electronics Engineers","17-2072.00","IRC"]], cx:["computer-hardware-engineer"] },
+  cs:      { onet:[["Software Developers","15-1252.00","ICR"],["Computer & Information Research Scientists","15-1221.00","IC"]], cx:["software-engineer","computer-scientist"] },
+  datasci: { onet:[["Data Scientists","15-2051.00","ICE"],["Statisticians","15-2041.00","ICE"],["Operations Research Analysts","15-2031.00","ICE"]], cx:["data-scientist"] },
+  ee:      { onet:[["Electrical Engineers","17-2071.00","IRC"],["Electronics Engineers","17-2072.00","IRC"]], cx:["electrical-engineer"] },
+  engphys: { onet:[["Physicists","19-2012.00","IRA"],["Nanosystems Engineers","17-2199.09","IRC"]], cx:["physicist"] },
+  env:     { onet:[["Environmental Engineers","17-2081.00","IRC"],["Environmental Scientists & Specialists","19-2041.00","IRC"]], cx:["environmental-engineer"] },
+  ioe:     { onet:[["Industrial Engineers","17-2112.00","ICE"],["Operations Research Analysts","15-2031.00","ICE"],["Logisticians","13-1081.00","ECI"]], cx:["industrial-engineer"] },
+  matsci:  { onet:[["Materials Engineers","17-2131.00","IRC"],["Materials Scientists","19-2032.00","IR"]], cx:["materials-engineer"] },
+  mech:    { onet:[["Mechanical Engineers","17-2141.00","RIC"],["Automotive Engineers","17-2141.02","RIC"]], cx:["mechanical-engineer"] },
+  name:    { onet:[["Marine Engineers & Naval Architects","17-2121.00","RIC"],["Ship Engineers","53-5031.00","RIC"]], cx:["naval-architect"] },
+  ners:    { onet:[["Nuclear Engineers","17-2161.00","IRC"],["Nuclear Medicine Technologists","29-2033.00","RIS"]], cx:["nuclear-engineer"] },
+  robo:    { onet:[["Robotics Engineers","17-2199.08","IRC"],["Mechatronics Engineers","17-2199.05","IRC"]], cx:["robotics-engineer"] },
+  space:   { onet:[["Aerospace Engineers","17-2011.00","IRC"],["Atmospheric & Space Scientists","19-2021.00","IR"],["Astronomers","19-2011.00","IRA"]], cx:["aerospace-engineer","astronomer"] },
+};
+// Official department / program pages (VERIFY)
+const SITES = {
+  aero:"https://aero.engin.umich.edu/", bme:"https://bme.umich.edu/", che:"https://che.engin.umich.edu/", civil:"https://cee.umich.edu/",
+  climate:"https://clasp.engin.umich.edu/", compe:"https://ece.engin.umich.edu/", cs:"https://cse.engin.umich.edu/", datasci:"https://cse.engin.umich.edu/",
+  ee:"https://ece.engin.umich.edu/", engphys:"https://www.engin.umich.edu/academics/undergraduate/majors/", env:"https://cee.umich.edu/",
+  ioe:"https://ioe.engin.umich.edu/", matsci:"https://mse.engin.umich.edu/", mech:"https://me.engin.umich.edu/", name:"https://name.engin.umich.edu/",
+  ners:"https://ners.engin.umich.edu/", robo:"https://robotics.umich.edu/", space:"https://clasp.engin.umich.edu/",
+};
+// Michigan resources shown in every detail panel (VERIFY URLs before release)
+const UM_RESOURCES = [
+  { n:"Engineering Advising Center", u:"https://advising.engin.umich.edu/", h:"declare a major, plan your schedule, talk it through", v:false },
+  { n:"Official sample schedules", u:"https://advising.engin.umich.edu/sample-schedules/", h:"four-year plans for every major", v:false },
+  { n:"Degree requirements — College of Engineering Bulletin", u:"https://bulletin.engin.umich.edu/", h:"the source of truth for courses", v:true },
+  { n:"All 18 undergraduate majors", u:"https://www.engin.umich.edu/academics/undergraduate/majors/", h:"Michigan Engineering overview pages", v:true },
+  { n:"Engineering Career Resource Center", u:"https://career.engin.umich.edu/", h:"career advising, internships, employer events", v:true },
+  { n:"Michigan Engineering salary outcomes", u:"https://career.engin.umich.edu/students/michigan-engineering-student-salary-information/", h:"where recent graduates went and what they earn", v:true },
+  { n:"University Career Center", u:"https://careercenter.umich.edu/", h:"ask about the Strong Interest Inventory or Focus 2", v:true },
+];
+// External career-exploration tests and field explainers (VERIFY URLs before release)
+const EXT_TESTS = [
+  { n:"O*NET Interest Profiler", u:"https://www.mynextmove.org/explore/ip", h:"free · 10 min · validated RIASEC profile (U.S. Dept. of Labor)", v:false },
+  { n:"CareerOneStop Interest Assessment", u:"https://www.careeronestop.org/toolkit/careers/interest-assessment.aspx", h:"free · 5 min · 30-item RIASEC short form", v:true },
+  { n:"CareerExplorer Career Test", u:"https://www.careerexplorer.com/career-test/", h:"free with account · ~30 min · interests + personality archetype", v:true },
+  { n:"Truity Holland Code Career Test", u:"https://www.truity.com/test/holland-code-career-test", h:"free · 10 min · RIASEC", v:true },
+  { n:"123test Career Test", u:"https://www.123test.com/career-test/", h:"free · 10 min · picture-based RIASEC", v:true },
+];
+const EXT_LEARN = [
+  { n:"TryEngineering (IEEE)", u:"https://tryengineering.org/", h:"what each engineering field actually does", v:true },
+  { n:"DiscoverE", u:"https://discovere.org/", h:"field explainers and engineer profiles", v:true },
+];
+
+
+// ---------- MAJORS ----------
+const ACCENTS = ["#00274C","#2F65A7","#C99700","#3D6E9E","#1B3A5C","#B8860B"];
+// Course lists intentionally omitted (v3.1): coursework is reached through the official sample-schedule link in each panel.
+const RAW = [
+  { id:"aero", name:"Aerospace", tagline:"Aircraft, rockets, and spacecraft — flight above the Earth's surface.", degreeType:"B.S.E. in Aerospace Engineering", desc:"You'll study the design, construction, and operation of vehicles that move above the Earth's surface — from aircraft and helicopters to rockets and spacecraft.", distinct:"Michigan has the largest aerospace engineering alumni base in the U.S.", profile:{math:90,hands:70,code:50,design:75,people:30} },
+  { id:"bme", name:"Biomedical", tagline:"Engineering principles applied to medicine and the human body.", degreeType:"B.S.E. in Biomedical Engineering", desc:"You'll bridge medical technology and medicine in practice — designing devices, instruments, and therapies grounded in biology and engineering.", distinct:"Sits at the intersection of engineering, biology, and clinical medicine.", profile:{math:65,hands:75,code:45,design:70,people:85} },
+  { id:"che", name:"Chemical", tagline:"Turning the natural sciences into materials, medicines, and energy.", degreeType:"B.S.E. in Chemical Engineering", desc:"You'll apply natural sciences, math, and coding to develop cost-effective, environmentally-friendly ways to produce materials, medicines, and energy.", distinct:"Requires organic chemistry (CHEM 210/211) instead of the standard lab track.", profile:{math:75,hands:80,code:35,design:45,people:55} },
+  { id:"civil", name:"Civil", tagline:"Structures, water, and transportation — the world people live in.", degreeType:"B.S.E. in Civil Engineering", desc:"You'll design the built environment — structures, transportation, and water systems — balancing safety, cost, sustainability, and community needs.", distinct:"The discipline Michigan Engineering was founded on, back in 1854.", profile:{math:65,hands:70,code:30,design:60,people:80} },
+  { id:"climate", name:"Climate & Meteorology", tagline:"The atmosphere, weather, and Earth's changing climate.", degreeType:"B.S.E. in Climate & Meteorology", desc:"You'll study the physics and chemistry of the atmosphere — how weather forms, how climate changes, and how we model and predict both.", distinct:"Housed in Climate & Space Sciences and Engineering on North Campus.", profile:{math:80,hands:55,code:65,design:35,people:50} },
+  { id:"compe", name:"Computer Engineering", tagline:"Where hardware meets software — the machines that run the code.", degreeType:"B.S.E. in Computer Engineering", desc:"You'll design the computing systems themselves — from logic and circuits up through processors and the software that drives them.", distinct:"A true hardware-software hybrid taught through the EECS department.", profile:{math:80,hands:60,code:85,design:55,people:35} },
+  { id:"cs", name:"Computer Science", tagline:"Algorithms, software systems, and the science of computation.", degreeType:"B.S.E. / B.S. in Computer Science", desc:"You'll design algorithms, build software systems, and reason about computation — the foundation behind everything from apps to artificial intelligence.", distinct:"Offered both as a B.S.E. in Engineering and a B.S. through LSA.", profile:{math:70,hands:40,code:95,design:65,people:45} },
+  { id:"datasci", name:"Data Science", tagline:"Turning huge, messy data into insight and prediction.", degreeType:"B.S.E. in Data Science", desc:"You'll combine computer science, statistics, and math to collect, model, and learn from large-scale data and build intelligent systems.", distinct:"A joint program across CSE and the Statistics department.", profile:{math:85,hands:35,code:90,design:50,people:45} },
+  { id:"ee", name:"Electrical", tagline:"Circuits, signals, power, and the systems behind modern tech.", degreeType:"B.S.E. in Electrical Engineering", desc:"You'll study how to design and control electrical and electronic systems — from the chips in your phone to the grid that powers a city.", distinct:"Shares the EECS department with computer science and engineering.", profile:{math:85,hands:65,code:60,design:55,people:35} },
+  { id:"engphys", name:"Engineering Physics", tagline:"Deep physics fused with engineering problem-solving.", degreeType:"B.S.E. in Engineering Physics", desc:"You'll go further into physics than most engineering majors — quantum mechanics, modern physics, and theoretical methods — paired with an engineering core.", distinct:"The most physics-intensive path in the College of Engineering.", profile:{math:95,hands:55,code:60,design:40,people:25} },
+  { id:"env", name:"Environmental", tagline:"Clean water, clean air, and engineering for a livable planet.", degreeType:"B.S.E. in Environmental Engineering", desc:"You'll engineer the systems that keep water, air, and land safe, and design sustainable solutions for pollution, climate, and resources.", distinct:"Like Chemical, it requires organic chemistry (CHEM 210/211).", profile:{math:60,hands:70,code:30,design:50,people:85} },
+  { id:"ioe", name:"Industrial & Operations", tagline:"Optimizing how people, machines, and time work together.", degreeType:"B.S.E. in Industrial & Operations Engineering", desc:"You'll learn to optimize complex systems — factories, hospitals, supply chains — to deliver more with fewer resources, blending math and human factors.", distinct:"The most business- and people-facing engineering major.", profile:{math:70,hands:40,code:55,design:50,people:75} },
+  { id:"matsci", name:"Materials Science", tagline:"Designing the materials that make every other technology possible.", degreeType:"B.S.E. in Materials Science & Engineering", desc:"You'll study how a material's structure controls its properties — and how to design metals, ceramics, polymers, and composites for new technologies.", distinct:"Underpins nearly every other engineering field.", profile:{math:70,hands:80,code:35,design:55,people:40} },
+  { id:"mech", name:"Mechanical", tagline:"Machines, energy, and the physics of how things move.", degreeType:"B.S.E. in Mechanical Engineering", desc:"Built on thermal & fluid sciences, solid mechanics & materials, and dynamics & controls — the broadest engineering major, working across nearly every industry.", distinct:"Ranked among the top mechanical engineering programs in the nation.", profile:{math:75,hands:85,code:35,design:80,people:40} },
+  { id:"name", name:"Naval Arch. & Marine", tagline:"Ships, submarines, and the engineering of the sea.", degreeType:"B.S.E. in Naval Architecture & Marine Engineering", desc:"You'll design vessels and marine structures — hydrodynamics, structures, and propulsion for ships, submarines, and offshore platforms.", distinct:"One of only a handful of such programs in the United States.", profile:{math:75,hands:70,code:40,design:75,people:35} },
+  { id:"ners", name:"Nuclear & Radiological", tagline:"Harnessing the nucleus — energy, medicine, and radiation science.", degreeType:"B.S.E. in Nuclear Engineering & Radiological Sciences", desc:"You'll study nuclear reactions, radiation, and how to apply them safely — for clean energy, medical imaging and therapy, and national security.", distinct:"Spans clean energy and radiological/medical applications.", profile:{math:85,hands:65,code:55,design:45,people:35} },
+  { id:"robo", name:"Robotics", tagline:"Machines that sense, think, and act — mechanics + electronics + code.", degreeType:"B.S.E. in Robotics", desc:"You'll fuse mechanical design, electronics, and software to build machines that perceive their world and act in it — from robot arms to autonomous vehicles.", distinct:"One of the first standalone undergraduate robotics degrees in the U.S.", profile:{math:75,hands:85,code:80,design:70,people:40} },
+  { id:"space", name:"Space Science & Eng.", tagline:"The space environment, spacecraft, and exploration.", degreeType:"B.S.E. in Space Science & Engineering", desc:"You'll study the space environment and the engineering of spacecraft and instruments — plasma, orbits, and the systems that survive beyond the atmosphere.", distinct:"Shares the Climate & Space department; strong instrument-building focus.", profile:{math:88,hands:65,code:60,design:60,people:30} },
+];
+const D = RAW.map((d,i) => ({ ...d, color: ACCENTS[i % ACCENTS.length] }));
+
+// =================== SCORING ===================
+const N_MAJORS = Object.keys(WEIGHTS).length;
+const TAG_USE = {}; Object.keys(TAGS).forEach(t => { TAG_USE[t] = Object.values(WEIGHTS).filter(w => (w[t]||0) > 0).length; });
+// Distinctiveness: 0.5 for an interest every major shares → 1.0 for an interest only one major involves.
+function distinct(t){ return 0.5 + 0.5 * Math.log2(N_MAJORS / Math.max(TAG_USE[t],1)) / Math.log2(N_MAJORS); }
+function effW(id){ const w = WEIGHTS[id]; const out = {}; Object.keys(w).forEach(t => out[t] = w[t] * distinct(t)); return out; }
+function scoreMajor(id, sel){
+  const ew = effW(id); const k = sel.size;
+  const sorted = Object.values(ew).sort((a,b)=>b-a);
+  const denom = k >= sorted.length ? sorted.reduce((s,v)=>s+v,0) : sorted.slice(0,k).reduce((s,v)=>s+v,0);
+  const hits = [...sel].filter(t => ew[t]).map(t => ({t, v: ew[t]}));
+  const num = hits.reduce((s,h)=>s+h.v,0);
+  const pct = denom ? Math.round(100*num/denom) : 0;
+  return { pct, denom, hits: hits.sort((a,b)=>b.v-a.v).map(h=>({t:h.t, share: Math.round(100*h.v/denom)})), misses:[...sel].filter(t=>!ew[t]) };
+}
+function scoredList(){ return D.map(d => ({...d, ...scoreMajor(d.id, selected)})).sort((a,b)=>b.pct-a.pct); }
+
+// =================== STATE ===================
+let selected = new Set();
+
+// =================== ICONS ===================
+function gear(s,c){c=c||"currentColor";return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.5"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>`;}
+function compass(s,c){c=c||"currentColor";return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="4.5" r="1.6"/><path d="M11 6 6 21M13 6l5 15M9.5 14h5"/></svg>`;}
+function ruler(s,c){c=c||"currentColor";return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.5" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7v3M10 7v4M14 7v3M18 7v4"/></svg>`;}
+function wrench(s,c){c=c||"currentColor";return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 4.9L4 16.5 7.5 20l5.3-5.3a4 4 0 0 0 4.9-5.4l-2.4 2.4-2.1-2.1z"/></svg>`;}
+function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+const lbl = t => TAGS[t] ? TAGS[t].label : t;
+const VER = `<span class="ee-verify" title="Not yet verified — placeholder in this draft">⚠</span>`;
+
+// ---------- ICONS (pictures for every option and major) ----------
+const TAG_ICON = { math:"📐", physics:"⚛️", chem:"🧪", bio:"🧬", earthsci:"🌦️", stats:"📊", econ:"💹", elecmag:"⚡", mechanics:"⚙️", csalgo:"💻", astro:"🔭",
+  build:"🔨", code:"⌨️", hands:"🧤", design:"✏️", puzzle:"🧩", optimize:"📋", lead:"🤝", howworks:"🔧", research:"🔬", analyze:"🔍", field:"🥾", simulate:"🖥️", wiring:"🔌", communicate:"🗣️",
+  space:"🚀", water:"🚢", health:"🩺", earth:"🌱", energy:"🔋", robots:"🤖", ai:"🧠", vehicles:"🚗", infra:"🏗️", biz:"💼", materials:"🧱", electronics:"📱", people:"💛" };
+const MAJOR_ICON = { aero:"✈️", bme:"🏥", che:"⚗️", civil:"🌉", climate:"🌤️", compe:"🖥️", cs:"💻", datasci:"📈", ee:"⚡", engphys:"⚛️", env:"💧", ioe:"🏭", matsci:"🔩", mech:"⚙️", name:"⚓", ners:"☢️", robo:"🤖", space:"🛰️" };
+const COL_META = {
+  subjects:     { title:"Subjects I enjoy",            short:"Subjects",   ico:"📚", why:"What you like to learn tells us which kinds of problems will keep you curious through four years of coursework." },
+  activities:   { title:"Things I like doing",         short:"Doing",      ico:"🛠️", why:"How you like to work matters as much as what you study. Every major mixes these differently." },
+  applications: { title:"Problems I want to work on",  short:"Problems",   ico:"🌍", why:"Where you want your work to land is often the clearest signal between majors that otherwise look alike." },
+};
+const MIN_PER_CAT = 3; // at least three picks in EACH of the three categories
+function catCount(c){ return [...selected].filter(t => TAGS[t].cat === c).length; }
+function catNeed(c){ return Math.max(0, MIN_PER_CAT - catCount(c)); }
+function ready(){ return CATEGORIES.every(c => catNeed(c.id) === 0); }
+function need(){ return CATEGORIES.reduce((s,c) => s + catNeed(c.id), 0); }
+const dotsHTML = (n, max) => `<span class="dots" aria-hidden="true">${Array.from({length:max},(_,i)=>`<i class="${i<n?"on":""}"></i>`).join("")}</span>`;
+
+// =================== RENDER: COLUMNS ===================
+function renderTags(){
+  document.getElementById("cols").innerHTML = CATEGORIES.map(c => {
+    const m = COL_META[c.id]; const ids = Object.keys(TAGS).filter(t => TAGS[t].cat === c.id); const n = catCount(c.id);
+    return `<section class="col c-${c.id}" aria-labelledby="h-${c.id}">
+      <div class="col-head"><span class="col-ico" aria-hidden="true">${m.ico}</span><h3 id="h-${c.id}">${esc(m.title)}</h3></div>
+      <p class="why">${esc(m.why)}</p>
+      <div class="prog" aria-live="polite">${dotsHTML(n, MIN_PER_CAT)}<span class="${n>=MIN_PER_CAT?"done":""}">${n >= MIN_PER_CAT ? `${n} picked — ready` : `${n} of ${MIN_PER_CAT} picked`}</span></div>
+      <div class="opts" role="group" aria-label="${esc(m.title)}">${ids.map(t => `<button class="opt" onclick="toggleTag('${t}')" aria-pressed="${selected.has(t)}"><span class="pic" aria-hidden="true">${TAG_ICON[t]||"•"}</span><span>${esc(TAGS[t].label)}</span><span class="chk" aria-hidden="true">✓</span></button>`).join("")}</div>
+      <p class="col-foot">${n >= MIN_PER_CAT ? "You can keep adding; more picks here are fine." : `Pick at least ${MIN_PER_CAT} here. Choose what you would do on a free afternoon.`}</p>
+    </section>`;
+  }).join("");
+  renderReset(); renderBar();
+}
+function renderReset(){
+  const k = selected.size;
+  document.getElementById("resetRow").innerHTML = `<button class="reset-btn" onclick="clearSel()" ${k?"":"disabled"} aria-label="Reset choices — clear all ${k} selected option${k===1?"":"s"}"><span class="ico" aria-hidden="true">↺</span> Reset choices</button>
+    <p class="reset-note">${k ? `Clears all ${k} selected option${k===1?"":"s"} and hides your matches.` : "Nothing selected yet."}</p>`;
+}
+function renderBar(){
+  const k = selected.size; const n = need(); const isReady = n === 0;
+  const seg = CATEGORIES.map(c => { const cn = catCount(c.id); return `<span class="bar-seg"><span class="mini" aria-hidden="true">${[0,1,2].map(i=>`<i class="${i<cn?"on":""}"></i>`).join("")}</span>${esc(COL_META[c.id].short)}${cn>=MIN_PER_CAT?" ✓":` ${cn}/${MIN_PER_CAT}`}</span>`; }).join("");
+  const cta = isReady ? `<button class="bar-cta" onclick="document.getElementById('meter').scrollIntoView({behavior:'smooth',block:'start'})">See my matches ↓</button>` : `<button class="bar-cta" disabled>Select ${n} more</button>`;
+  const reset = `<button class="bar-reset" onclick="clearSel()">↺ Reset</button>`;
+  document.getElementById("bar").innerHTML = k ? `<div class="bar-in">${seg}${cta}${reset}</div>` : "";
+}
+
+// =================== RENDER: METER ===================
+function overlapBlock(top){
+  if(top.length < 2) return "";
+  const sets = top.map(d => new Set(d.hits.map(h=>h.t)));
+  const shared = [...selected].filter(t => sets.every(s => s.has(t)));
+  const chips = arr => arr.length ? arr.map(t=>`<span class="chip">${esc(lbl(t))}</span>`).join("") : `<i>none</i>`;
+  let html = `<div class="ee-overlap"><b>How your top ${top.length} overlap.</b> Shared by all: ${chips(shared)}`;
+  top.forEach((d,i) => {
+    // interests this major weights more heavily than every other major in the top group
+    const only = [...sets[i]].filter(t => top.every((o,j) => j===i || (WEIGHTS[d.id][t]||0) > (WEIGHTS[o.id][t]||0)));
+    html += `<br><b>${esc(d.name)}</b> leans hardest on: ${only.length ? only.map(t=>`<span class="chip distinct">${esc(lbl(t))}</span>`).join("") : "<i>none of your picks more than the others do</i>"}`;
+  });
+  return html + `</div>`;
+}
+function renderMeter(){
+  const k = selected.size; const isReady = ready();
+  let html = `<section class="meter" id="meterBox" aria-live="polite"><div class="meter-head"><h2>Your matches</h2><button class="ee-info-btn" onclick="openInfo()">How the percentages work</button></div>`;
+  if(!isReady){
+    const n = need();
+    const short = CATEGORIES.filter(c => catNeed(c.id) > 0);
+    const names = short.map(c => `<b>${esc(COL_META[c.id].title)}</b>`);
+    const list = names.length === 1 ? names[0] : names.slice(0,-1).join(", ") + " and " + names[names.length-1];
+    html += `<div class="locked" role="status">
+      <div class="locked-cats">${CATEGORIES.map(c => { const cn = catCount(c.id); const ok = cn >= MIN_PER_CAT; return `<span class="locked-cat${ok?" ok":""}">${dotsHTML(cn, MIN_PER_CAT)}${esc(COL_META[c.id].short)} ${ok ? "✓" : `${cn}/${MIN_PER_CAT}`}</span>`; }).join("")}</div>
+      <p class="big">${k === 0 ? `Select at least <em>3</em> options from each category to see your matches` : `Select <em>${n}</em> more option${n===1?"":"s"} to see your matches`}</p>
+      <p class="locked-note">${k === 0 ? "Your matches stay hidden until each of the three categories — Subjects I enjoy, Things I like doing, and Problems I want to work on — has at least three picks." : `Still needed in ${list}. Majors are compared on all three categories at once, so the meter waits until each has three.`}</p></div></section>`;
+  } else {
+    const sc = scoredList();
+    const top = sc.slice(0,6); const max = top[0]?.pct || 1; const allEqual = sc.length && sc.every(d => d.pct === sc[0].pct);
+    if(k > 16) html += `<div class="ee-nudge">You have picked ${k} options. That is fine, but the more you add the more alike majors look. Trimming to the ones that matter most will sharpen the picture.</div>`;
+    if(allEqual) html += `<div class="ee-nudge">Every major scores the same with these picks, so the meter cannot tell them apart. Try removing a few.</div>`;
+    html += `<div class="ee-meter-bars">` + top.map((d,i)=>`<button class="ee-meter-row" onclick="openDetail('${d.id}')" aria-label="Rank ${i+1}: ${esc(d.name)}, ${d.pct}% overlap"><span class="ee-rank${i===0?" r1":""}">${i+1}</span><span class="m-ico" aria-hidden="true">${MAJOR_ICON[d.id]}</span><span class="ee-meter-name">${esc(d.name)}</span><span class="ee-meter-track"><span class="ee-meter-fill" data-target="${(d.pct/max)*100}" style="width:0;background:${d.color}"></span></span><span class="ee-meter-val">${d.pct}%</span></button>`).join("") + `</div>`;
+    html += overlapBlock(top.slice(0,3));
+    html += `<div class="ee-meter-science"><strong>What the percentage means.</strong> How much of a major's most important interests your picks cover, with interests that set majors apart counting more than ones nearly every engineer shares. Adding an interest a major involves keeps its score steady or raises it; adding one it does not involve lowers it. It is an overlap of interests, not a prediction of ability, admission, or success. Tap any match to see exactly which picks drove it, plus Michigan Engineering and outside resources for exploring it further.</div>
+    <div class="ee-abet-note"><b>Accreditation.</b> This tool does not show ABET accreditation status. For the current accreditation status of any Michigan Engineering program, <a href="https://advising.engin.umich.edu/" target="_blank" rel="noopener">ask a Michigan Engineering advisor</a> or check the program's official website.</div></section>`;
+  }
+  document.getElementById("meter").innerHTML = html;
+  requestAnimationFrame(()=>document.querySelectorAll("#meter .ee-meter-fill").forEach(el=>{el.style.width=el.dataset.target+"%";}));
+}
+
+// =================== RENDER: DETAIL ===================
+function rationale(d){
+  if(!ready()) return "";
+  const s = scoreMajor(d.id, selected);
+  const rows = s.hits.map(h=>`<div class="ee-contrib-row"><span class="lbl">${esc(lbl(h.t))}</span><div class="ee-contrib-track"><div class="ee-contrib-fill" style="width:${Math.min(100,h.share*2)}%"></div></div><span class="val">+${h.share}</span></div>`).join("")
+    + s.misses.map(t=>`<div class="ee-contrib-row"><span class="lbl miss">${esc(lbl(t))}</span><div class="ee-contrib-track"></div><span class="val" style="color:#9aa8b6">0</span></div>`).join("");
+  const strongest = s.hits.slice(0,2).map(h=>lbl(h.t).toLowerCase()).join(" and ");
+  return `<div class="ee-match-rationale"><span class="ee-tiny" style="display:block;margin-bottom:6px;">&#10003; why this may be worth exploring · ${s.pct}% overlap</span>
+    ${strongest ? `Your interest in <b>${esc(strongest)}</b> is central to ${esc(d.name)}. This field often involves ${esc(d.tagline.toLowerCase().replace(/\.$/,""))}.` : `None of your current picks are central to ${esc(d.name)} — which can itself be useful to know.`}
+    <div class="ee-contrib">${rows}</div>
+    <div style="font-size:11.5px;color:#75879a;">Each bar is a selected interest's contribution to the ${s.pct}% (points add up to the score). Struck-through picks aren't part of this major's profile.</div>
+    <div class="ee-match-disclaimer">Results are exploratory — an overlap of interests, not a measure of ability, admissions likelihood, or future success. Interests change as you gain experience; talk with an advisor, try a course, and meet students in the program.</div></div>`;
+}
+function openDetail(id){
+  const d = D.find(x=>x.id===id); if(!d) return;
+  const car = CAREERS[id];
+  const profileRows = [["math","Math intensity"],["hands","Hands-on / lab"],["code","Coding"],["design","Design & creativity"],["people","People impact"]];
+  const html = `
+    <button class="ee-close" onclick="closeDetail(event,true)" aria-label="Close">×</button>
+    <div class="ee-detail-band"></div>
+    <div class="ee-detail-head"><div>
+        <h2>${esc(d.degreeType)}</h2>
+        <p class="ee-detail-tagline">${esc(d.desc)}</p>
+        <p class="ee-distinct"><span class="ee-tiny">at michigan</span> ${esc(d.distinct)}</p>
+        <div class="ee-badges"><span class="ee-badge">Michigan Engineering · undergraduate major</span></div>
+      </div></div>
+    ${rationale(d)}
+    <h3 class="ee-res-title"><span class="tag um">U-M</span> Michigan Engineering resources</h3>
+    <div class="ee-links">
+      <div class="ee-link-box um"><span class="ee-tiny">${wrench(12,"#2F65A7")} this program at michigan</span>
+        <ul><li><a href="${SITES[id]}" target="_blank" rel="noopener">Official ${esc(d.name)} program website</a> ${VER}</li>
+        <li><a href="https://advising.engin.umich.edu/sample-schedules/" target="_blank" rel="noopener">Official ${esc(d.name)} sample schedule</a> <span class="ee-code">advising.engin.umich.edu</span></li>
+        <li><a href="${UM_RESOURCES[2].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[2].n)}</a> ${VER}</li>
+        <li><a href="${UM_RESOURCES[3].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[3].n)}</a> ${VER}</li></ul>
+        <div style="margin-top:8px;font-size:12px;color:#75879a;">Course-by-course requirements are not shown here on purpose — they change, and the official pages are the source of truth.</div></div>
+      <div class="ee-link-box um"><span class="ee-tiny">${compass(12,"#2F65A7")} people who can help</span>
+        <ul><li><a href="${UM_RESOURCES[0].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[0].n)}</a> <span class="ee-code">${esc(UM_RESOURCES[0].h)}</span></li>
+        <li><a href="${UM_RESOURCES[4].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[4].n)}</a> <span class="ee-code">${esc(UM_RESOURCES[4].h)}</span> ${VER}</li>
+        <li><a href="${UM_RESOURCES[5].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[5].n)}</a> ${VER}</li>
+        <li><a href="${UM_RESOURCES[6].u}" target="_blank" rel="noopener">${esc(UM_RESOURCES[6].n)}</a> <span class="ee-code">${esc(UM_RESOURCES[6].h)}</span> ${VER}</li></ul></div>
+    </div>
+    <h3 class="ee-res-title"><span class="tag ext">External</span> Careers and career-exploration tests</h3>
+    <div class="ee-links">
+      <div class="ee-link-box ext"><span class="ee-tiny">${compass(12,"#8A6A00")} careers this major leads to ${VER}</span>
+        <ul>${car.onet.map(([n,soc,ri])=>`<li><a href="${ONET(soc)}" target="_blank" rel="noopener">${esc(n)}</a> <span class="ee-code">O*NET ${soc} · ${ri}</span></li>`).join("")}
+        ${car.cx.map(s=>`<li><a href="${CX(s)}" target="_blank" rel="noopener">CareerExplorer: ${esc(s.replace(/-/g," "))}</a> <span class="ee-code">personality, salary, day-to-day</span> ${VER}</li>`).join("")}
+        ${EXT_LEARN.map(r=>`<li><a href="${r.u}" target="_blank" rel="noopener">${esc(r.n)}</a> <span class="ee-code">${esc(r.h)}</span>${r.v?" "+VER:""}</li>`).join("")}</ul>
+        <div style="margin-top:8px;font-size:12px;color:#75879a;">Letters are Holland (RIASEC) interest codes from O*NET: R realistic · I investigative · A artistic · S social · E enterprising · C conventional.</div></div>
+      <div class="ee-link-box ext"><span class="ee-tiny">${ruler(12,"#8A6A00")} take a career-exploration test</span>
+        <span class="hint">Free tests that give you a Holland (RIASEC) code to set beside this result. None of them can tell engineering majors apart as finely as this tool tries to — use them to check the bigger picture.</span>
+        <ul>${EXT_TESTS.map(r=>`<li><a href="${r.u}" target="_blank" rel="noopener">${esc(r.n)}</a> <span class="ee-code">${esc(r.h)}</span>${r.v?" "+VER:""}</li>`).join("")}
+        <li><span style="font-weight:600;color:#3B4F66;">Strong Interest Inventory / Focus 2</span> <span class="ee-code">validated, counselor-administered — ask the University Career Center</span> ${VER}</li></ul></div>
+    </div>
+    <div class="ee-viz">
+      <div class="ee-viz-box"><span class="ee-tiny">${compass(12,"#5E8AB4")} program-fit profile <span class="ee-ph">draft estimate</span></span>
+        <div class="ee-bars">${profileRows.map(([k,l])=>`<div class="ee-bar-row"><span class="ee-bar-label">${l}</span><div class="ee-bar-track"><div class="ee-bar-fill" data-target="${d.profile[k]}" style="width:0"></div></div><span class="ee-bar-val">${d.profile[k]}</span></div>`).join("")}</div></div>
+      <div class="ee-viz-box"><span class="ee-tiny">${wrench(12,"#5E8AB4")} next step</span>
+        <p style="font-size:13.5px;line-height:1.6;color:#3f5468;margin:10px 0 0;">Take this list to an advisor, try one course in the area, and meet students in the program. Interests shift during the first year, so revisit the Explorer after a term and see what changed. For this program's ABET accreditation status, ask an advisor or check the official program website.</p>
+        <p style="margin:12px 0 0;"><a href="https://advising.engin.umich.edu/" target="_blank" rel="noopener" style="display:inline-block;background:#00274C;color:#fff;border-radius:999px;padding:8px 16px;font-weight:700;font-size:13px;text-decoration:none;">Talk with a Michigan Engineering advisor →</a></p></div>
+    </div>`;
+  const detail = document.getElementById("detail"); detail.style.setProperty("--c", d.color); detail.innerHTML = html;
+  const ov = document.getElementById("overlay"); ov.classList.add("open"); ov.scrollTop = 0;
+  detail.querySelector(".ee-close").focus();
+  requestAnimationFrame(()=>document.querySelectorAll("#detail .ee-bar-fill").forEach(el=>{el.style.width=el.dataset.target+"%";}));
+}
+function closeDetail(e, force){ if(force || e.target.id==="overlay") document.getElementById("overlay").classList.remove("open"); }
+
+// =================== RENDER: METHODOLOGY ===================
+function weightTable(){
+  const tags = Object.keys(TAGS);
+  return `<div class="ee-wrap"><table class="ee-wtable"><thead><tr><th>Major \\ interest</th>${tags.map(t=>`<th title="${esc(lbl(t))}">${esc(lbl(t).split(" ")[0].slice(0,6))}</th>`).join("")}</tr></thead><tbody>${D.map(d=>`<tr><td>${esc(d.name)}</td>${tags.map(t=>{const w=WEIGHTS[d.id][t]||0;return `<td class="${w?"w"+w:""}">${w||""}</td>`;}).join("")}</tr>`).join("")}<tr><td><i>distinctiveness</i></td>${tags.map(t=>`<td>${distinct(t).toFixed(2)}</td>`).join("")}</tr></tbody></table></div>`;
+}
+function openInfo(){
+  const ex = (() => { const s=new Set(["build","design","physics"]); const r=scoreMajor("mech",s); return r; })();
+  document.getElementById("infoBox").innerHTML = `
+    <button class="ee-close" onclick="closeInfo(event,true)" aria-label="Close">×</button>
+    <h3 id="infoTitle">How your match is calculated</h3>
+    <p>The meter measures <b>overlap between the interests you picked and each major's interest profile</b>. It is an exploration aid, not a test: it cannot measure ability, predict grades, or tell you which major to choose.</p>
+    <h4>Step by step</h4>
+    <ol>
+      <li><b>Each major has a profile.</b> Draft weights of 1–3 (pending faculty and advisor review) say how central each of the 38 interests is to that major — for example, "Space &amp; flight" is a 3 for Aerospace and a 0 for Chemical. The full table is below.</li>
+      <li><b>Distinctive interests count more.</b> An interest nearly every engineering major involves (Math) is multiplied by 0.5; one that only a few majors involve (Oceans, ships &amp; water) is multiplied by about 0.8. This keeps broadly applicable picks like "solving puzzles" from steering the result.</li>
+      <li><b>Your score for a major</b> = the weight of your picks that appear in its profile ÷ the weight of its <i>k</i> most important interests, where <i>k</i> is how many things you picked. 100% means your picks are exactly the interests that matter most to that major.</li>
+    </ol>
+    <div class="ee-formula">score(major) = Σ<sub>t ∈ your picks</sub> w<sub>major,t</sub>·d<sub>t</sub> &nbsp;÷&nbsp; Σ<sub>top-k of major</sub> w<sub>major,t</sub>·d<sub>t</sub> &nbsp;&nbsp;·&nbsp;&nbsp; d<sub>t</sub> = 0.5 + 0.5·log(18 / #majors using t) / log 18</div>
+    <p><b>Worked example.</b> Pick <i>Building physical things</i>, <i>Designing &amp; creativity</i>, and <i>Physics</i>. Mechanical weights them 3, 3 and 2, so Mechanical scores ${ex.pct}%. Add <i>Chemistry</i> (not in Mechanical's profile) and the denominator grows to Mechanical's top 4 while the numerator stays put, so the score dips. Add <i>Hands-on / lab work</i> instead — a real but secondary interest for Mechanical — and it moves only slightly (85% → 81%). Add <i>Mechanics, forces &amp; motion</i> and it reaches 100%.</p>
+    <h4>Why the change from the previous version</h4>
+    <p>Student testers noticed that selecting more buttons lowered every percentage. The earlier formula divided matched interests by the <i>number of buttons pressed</i>, so a student who selected nine things could never see a major above about 78%, and the best match fell as picks were added. The new formula barely moves when you add a pick a major actually involves and only drops when you add one it does not, asks for at least three picks in each of the three categories so the meter compares majors on what you like to learn, how you like to work and where you want your work to land all at once, rather than echoing one button, and uses one weight table per major (the old version kept two lists that had drifted apart — the reason Electrical rarely surfaced).</p>
+    <h4>Assumptions &amp; limitations</h4>
+    <ul>
+      <li>Weights are expert judgments in draft form, pending review by faculty and advisors in each department — they are not derived from student outcome data.</li>
+      <li>Picks are self-reported and taken in one sitting; interests in the first year of college are still changing (Low et al., 2005; Hoff et al., 2018).</li>
+      <li>The meter uses interests only. Self-efficacy, values, identity, and belonging also shape major choice and persistence (Lent et al., 2008; Godwin et al., 2016; Cech et al., 2011) and are better explored with an advisor.</li>
+      <li>Some buttons blend interests with values or traits ("helping people"); the research literature treats these as related but distinct constructs.</li>
+      <li>Additive overlap is simpler than the profile-similarity indices used in validated interest inventories (Brown &amp; Gore, 1994; Tracey et al., 2012); it is adequate for exploration, not for prediction.</li>
+      <li>Observed links between interest fit and later satisfaction or performance are real but modest (Nye et al., 2012; Tsabari et al., 2005). Treat results as prompts for conversation.</li>
+    </ul>
+    <details><summary>Show the full draft weight table (18 majors × 38 interests)</summary>${weightTable()}</details>
+    <h4>Frameworks and sources</h4>
+    <p>The design draws on Holland's RIASEC person–environment fit theory, Social Cognitive Career Theory, engineering-identity research, and work-values research. Career links use O*NET OnLine interest codes (U.S. Department of Labor).</p>
+    <details><summary>Peer-reviewed references (⚠ citations compiled offline; verify DOIs before publication)</summary>
+    <ol class="ee-refs">
+      <li>Holland, J. L. (1997). <i>Making vocational choices: A theory of vocational personalities and work environments</i> (3rd ed.). PAR.</li>
+      <li>Nauta, M. M. (2010). The development, evolution, and status of Holland's theory of vocational personalities. <i>Journal of Counseling Psychology, 57</i>(1), 11–22.</li>
+      <li>Rounds, J., &amp; Su, R. (2014). The nature and power of interests. <i>Current Directions in Psychological Science, 23</i>(2), 98–103.</li>
+      <li>Nye, C. D., Su, R., Rounds, J., &amp; Drasgow, F. (2012). Vocational interests and performance: A quantitative summary of over 60 years of research. <i>Perspectives on Psychological Science, 7</i>(4), 384–403.</li>
+      <li>Lent, R. W., Brown, S. D., &amp; Hackett, G. (1994). Toward a unifying social cognitive theory of career and academic interest, choice, and performance. <i>Journal of Vocational Behavior, 45</i>(1), 79–122.</li>
+      <li>Lent, R. W., Sheu, H.-B., Singley, D., Schmidt, J. A., Schmidt, L. C., &amp; Gloster, C. S. (2008). Longitudinal relations of self-efficacy to outcome expectations, interests, and major choice goals in engineering students. <i>Journal of Vocational Behavior, 73</i>(2), 328–335.</li>
+      <li>Lent, R. W., &amp; Brown, S. D. (2019). Social cognitive career theory at 25. <i>Journal of Vocational Behavior, 115</i>, 103316.</li>
+      <li>Godwin, A., Potvin, G., Hazari, Z., &amp; Lock, R. (2016). Identity, critical agency, and engineering: An affective model for predicting engineering as a career choice. <i>Journal of Engineering Education, 105</i>(2), 312–340.</li>
+      <li>Matusovich, H. M., Streveler, R. A., &amp; Miller, R. L. (2010). Why do students choose engineering? A qualitative, longitudinal investigation of students' motivational values. <i>Journal of Engineering Education, 99</i>(4), 289–303.</li>
+      <li>Cech, E., Rubineau, B., Silbey, S., &amp; Seron, C. (2011). Professional role confidence and gendered persistence in engineering. <i>American Sociological Review, 76</i>(5), 641–666.</li>
+      <li>Ohland, M. W., Sheppard, S. D., Lichtenstein, G., Eris, O., Chachra, D., &amp; Layton, R. A. (2008). Persistence, engagement, and migration in engineering programs. <i>Journal of Engineering Education, 97</i>(3), 259–278.</li>
+      <li>Dawis, R. V., &amp; Lofquist, L. H. (1984). <i>A psychological theory of work adjustment</i>. University of Minnesota Press.</li>
+      <li>Rounds, J., Su, R., Lewis, P., &amp; Rivkin, D. (2010). <i>O*NET Interest Profiler Short Form psychometric characteristics</i>. National Center for O*NET Development.</li>
+      <li>Low, K. S. D., Yoon, M., Roberts, B. W., &amp; Rounds, J. (2005). The stability of vocational interests from early adolescence to middle adulthood. <i>Psychological Bulletin, 131</i>(5), 713–737.</li>
+      <li>Hoff, K. A., Briley, D. A., Wee, C. J. M., &amp; Rounds, J. (2018). Normative changes in interests from adolescence to adulthood: A meta-analysis of longitudinal studies. <i>Psychological Bulletin, 144</i>(4), 426–451.</li>
+      <li>Brown, S. D., &amp; Gore, P. A., Jr. (1994). An evaluation of interest congruence indices. <i>Journal of Vocational Behavior, 45</i>(3), 310–327.</li>
+      <li>Tracey, T. J. G., Allen, J., &amp; Robbins, S. B. (2012). Moderation of the relation between person–environment congruence and academic success. <i>Journal of Vocational Behavior, 80</i>(1), 38–49.</li>
+      <li>Tsabari, O., Tziner, A., &amp; Meir, E. I. (2005). Updated meta-analysis on the relationship between congruence and satisfaction. <i>Journal of Career Assessment, 13</i>(2), 216–232.</li>
+    </ol></details>
+    <div class="ee-info-source">Alternative profile draft v2 · November 2026 · Weights and external links pending verification · U-M College of Engineering Bulletin 2026–2027 · O*NET OnLine</div>`;
+  document.getElementById("infoModal").classList.add("open");
+  document.getElementById("infoBox").querySelector(".ee-close").focus();
+}
+function closeInfo(e, force){ if(force || e.target.id==="infoModal") document.getElementById("infoModal").classList.remove("open"); }
+
+// =================== ACTIONS ===================
+function toggleTag(id){ selected.has(id)?selected.delete(id):selected.add(id); renderTags(); renderMeter(); }
+function clearSel(){ selected=new Set(); renderTags(); renderMeter(); document.getElementById("cols").scrollIntoView({behavior:"smooth",block:"start"}); }
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeInfo(e,true); closeDetail(e,true); } });
+
+// Hide the progress bar while the matches panel is on screen
+if('IntersectionObserver' in window){ new IntersectionObserver(es => { const bar=document.getElementById('bar'); es.forEach(e => bar.classList.toggle('hidden', e.isIntersecting && ready())); }, { threshold: .15 }).observe(document.getElementById('meter')); }
+// =================== INIT ===================
+renderTags(); renderMeter();
+</script>
+</body>
+</html>
